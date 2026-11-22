@@ -99,7 +99,7 @@ def main() -> int:
     dry_run = os.environ.get("DRY_RUN", "false").lower() in ("1", "true", "yes")
 
     now = datetime.now(timezone.utc)
-    min_create_date = (now - timedelta(days=MAX_AGE_DAYS)).strftime("%Y-%m-%dT%H:%M:%S+00:00")
+    min_create_date = (now - timedelta(days=MAX_AGE_DAYS)).strftime("%Y-%m-%d")
 
     print(f"Shop: {SHOP_URL}")
     print("Zoeken naar orders: status=Nieuw(1), betaald, create_date >=", min_create_date)
