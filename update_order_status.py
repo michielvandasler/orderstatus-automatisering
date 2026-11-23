@@ -38,7 +38,7 @@ def request(method: str, uri: str, data: str | None = None, retries: int = 3) ->
     hash_string = f"{API_KEY}|{method}|{uri}|{body}|{timestamp}"
     request_hash = hmac.new(API_SECRET.encode(), hash_string.encode(), hashlib.sha512).hexdigest()
 
-    req = urllib.request.Request(SHOP_URL + uri, method=method)
+    req = urllib.request.Request(SHOP_URL + uri, data=body.encode("utf-8") if body else None, method=method)
     req.add_header("x-public", API_KEY)
     req.add_header("x-date", timestamp)
     req.add_header("x-hash", request_hash)
